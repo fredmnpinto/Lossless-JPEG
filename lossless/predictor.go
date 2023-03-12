@@ -32,13 +32,13 @@ func CalculateOffsets(image image.YCbCr) [][]color.YCbCr {
 
 			predicted := predictPixel(getRelevantNeighbors(image, x, y))
 
-			pixel_offset := color.YCbCr{
+			pixelOffset := color.YCbCr{
 				Y:  pixel.Y - predicted.Y,
 				Cb: pixel.Cb - predicted.Cb,
 				Cr: pixel.Cr - predicted.Cr,
 			}
 
-			row = append(row, pixel_offset)
+			row = append(row, pixelOffset)
 		}
 		offsets = append(offsets, row)
 	}
@@ -46,12 +46,12 @@ func CalculateOffsets(image image.YCbCr) [][]color.YCbCr {
 }
 
 // getRelevantNeighbors returns the neighbors relevant to the predictor for given pixel position
-func getRelevantNeighbors(image image.YCbCr, x int, y int) (neighbor_a color.YCbCr, neighbor_b color.YCbCr, neighbor_c color.YCbCr) {
-	neighbor_a = image.YCbCrAt(x-1, y)
-	neighbor_b = image.YCbCrAt(x, y-1)
-	neighbor_c = image.YCbCrAt(x-1, y-1)
+func getRelevantNeighbors(image image.YCbCr, x int, y int) (neighborA color.YCbCr, neighborB color.YCbCr, neighborC color.YCbCr) {
+	neighborA = image.YCbCrAt(x-1, y)
+	neighborB = image.YCbCrAt(x, y-1)
+	neighborC = image.YCbCrAt(x-1, y-1)
 
-	return neighbor_a, neighbor_b, neighbor_c
+	return neighborA, neighborB, neighborC
 }
 
 // predictPixel uses a DPCM predictor to predict the pixel based on it's neighbors
