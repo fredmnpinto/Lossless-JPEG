@@ -1,9 +1,9 @@
-name: "Static Analysis"
+name: "Analyse code"
 on: ["push", "pull_request"]
 
 jobs:
   ci:
-    name: "Staticcheck"
+    name: "Static Analysis"
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v1
@@ -13,7 +13,17 @@ jobs:
       with:
         version: "2022.1.1"
 
-    - run: "go install golang.org/x/lint/golint@latest"
-    - run: "golint ./..."
+    - name: "Installing golint"
+      run: "go install golang.org/x/lint/golint@latest"
 
-    - run: "go vet ./..."
+    - name: "Installing ineffassign"
+      run: "go install github.com/gordonklaus/ineffassign@latest"
+
+    - name: "Running golint"
+      run: "golint ./..."
+
+    - name: "Running go vet"
+      run: "go vet ./..."
+
+    - name: "Running go ineffassign"
+      run: "ineffassign ./..."
