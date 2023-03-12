@@ -6,6 +6,7 @@ import (
 	"os"
 )
 
+// Encode writes the given image encoded in regular JPEG to the given file.
 func EncodeJpeg(ycbcr *image.YCbCr, filename string) error {
 	file, err := os.Create(filename)
 	if err != nil {
@@ -21,6 +22,7 @@ func EncodeJpeg(ycbcr *image.YCbCr, filename string) error {
 	return nil
 }
 
+// Encode reads a regular JPEG image from the file
 func DecodeJpeg(filename string) (image.Image, error) {
 	file, err := os.Open(filename)
 	if err != nil {

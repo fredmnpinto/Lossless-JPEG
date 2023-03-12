@@ -2,12 +2,14 @@ package lossless
 
 import "image"
 
-func Encode(image image.YCbCr) (encodedImage image.YCbCr) {
+// Writes the image encoded in Lossless JPEG to the file
+func Encode(image image.YCbCr, filename string) (err error) {
 
-	return encodedImage
+	return nil
 }
 
-func Decode(image image.YCbCr) (decodedImage image.YCbCr) {
+// Reads the image encoded in Lossless JPEG from the file
+func Decode(image image.YCbCr, filename string) (decodedImage image.YCbCr, err error) {
 
-	return decodedImage
+	return decodedImage, nil
 }
