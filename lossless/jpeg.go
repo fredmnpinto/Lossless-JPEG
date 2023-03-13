@@ -5,6 +5,8 @@ import "image"
 // Encode writes the image encoded in Lossless JPEG to the file
 func Encode(image image.YCbCr, filename string) (err error) {
 
+	CalculatePredictionOffsets(image)
+
 	return nil
 }
 
